@@ -15,21 +15,23 @@ class Create_QR {
 
     /**
      *
-     * @param qrCodeData
+     * @param qrCodeData A informação
+     * @param width 200
+     * @param heigth 200
      * @return
      */
-    public static String gerarQrCode(String qrCodeData) {
+    public static String gerarQrCode(String qrCodeData, int width, int height) {
         try {
             String filePath = "D:\\Loja\\Licenciatura em Computação - IFTO\\2º PERÍODO\\QR_CODE\\QRCODE\\chillyfacts.png";
 
             String charset = "UTF-8"; // or "ISO-8859-1"
 
             Map<EncodeHintType, ErrorCorrectionLevel> hintMap = new HashMap<>();
-            
+
             hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-            
+
             BitMatrix matrix = new MultiFormatWriter().encode(
-                    new String(qrCodeData.getBytes(charset), charset), BarcodeFormat.QR_CODE, 200, 200, hintMap);
+                    new String(qrCodeData.getBytes(charset), charset), BarcodeFormat.QR_CODE, width, height, hintMap);
             MatrixToImageWriter.writeToFile(matrix, filePath.substring(filePath
                     .lastIndexOf('.') + 1), new File(filePath));
             return "QR Code image created successfully!";
