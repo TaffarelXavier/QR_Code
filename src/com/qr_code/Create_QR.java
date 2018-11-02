@@ -13,21 +13,26 @@ import javax.swing.JOptionPane;
 
 class Create_QR {
 
-    public static void gerarQrCode() {
+    /**
+     *
+     * @param qrCodeData
+     * @return
+     */
+    public static String gerarQrCode(String qrCodeData) {
         try {
-            String qrCodeData = "www.chillyfacts.com";
             String filePath = "D:\\Loja\\Licenciatura em Computação - IFTO\\2º PERÍODO\\QR_CODE\\QRCODE\\chillyfacts.png";
             String charset = "UTF-8"; // or "ISO-8859-1"
-            Map< EncodeHintType, ErrorCorrectionLevel> hintMap = new HashMap< EncodeHintType, ErrorCorrectionLevel>();
+            Map< EncodeHintType, ErrorCorrectionLevel> hintMap = new HashMap<>();
             hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
             BitMatrix matrix = new MultiFormatWriter().encode(
                     new String(qrCodeData.getBytes(charset), charset),
                     BarcodeFormat.QR_CODE, 200, 200, hintMap);
             MatrixToImageWriter.writeToFile(matrix, filePath.substring(filePath
                     .lastIndexOf('.') + 1), new File(filePath));
-            System.out.println("QR Code image created successfully!");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e.getMessage() , "Atenção", 1);
+            return "QR Code image created successfully!";
+        } catch (Exception | ExceptionInInitializerError e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Atenção", 1);
         }
+        return null;
     }
 }
