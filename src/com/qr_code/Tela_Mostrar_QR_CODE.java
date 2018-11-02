@@ -5,6 +5,15 @@
  */
 package com.qr_code;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Taffrel Xavier <taffarel_deus@hotmail.com>
@@ -29,9 +38,10 @@ public class Tela_Mostrar_QR_CODE extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jQr_Code_Texto = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Teste");
+        setTitle("QR_Code_Generador");
 
         jButton1.setText("Gerar QR Code");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -52,19 +62,25 @@ public class Tela_Mostrar_QR_CODE extends javax.swing.JFrame {
                     .addComponent(jQr_Code_Texto)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 223, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(66, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jQr_Code_Texto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
 
         pack();
@@ -74,6 +90,15 @@ public class Tela_Mostrar_QR_CODE extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Create_QR.gerarQrCode(jQr_Code_Texto.getText());
+
+        String pathImage = "D:\\Loja\\Licenciatura em Computação - IFTO\\2º PERÍODO\\QR_CODE\\QRCODE\\chillyfacts.png";
+
+        try {
+            BufferedImage image = ImageIO.read(new File(pathImage));
+            jLabel2.setIcon(new ImageIcon(image));
+        } catch (IOException ex) {
+            Logger.getLogger(Tela_Mostrar_QR_CODE.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -112,6 +137,7 @@ public class Tela_Mostrar_QR_CODE extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jQr_Code_Texto;
     // End of variables declaration//GEN-END:variables
 }
