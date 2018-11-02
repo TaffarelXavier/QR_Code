@@ -9,10 +9,11 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import javax.swing.JOptionPane;
 
-public class Create_QR {
+class Create_QR {
 
-    public static void main(String[] args) {
+    public static void gerarQrCode() {
         try {
             String qrCodeData = "www.chillyfacts.com";
             String filePath = "D:\\Loja\\Licenciatura em Computação - IFTO\\2º PERÍODO\\QR_CODE\\QRCODE\\chillyfacts.png";
@@ -26,7 +27,7 @@ public class Create_QR {
                     .lastIndexOf('.') + 1), new File(filePath));
             System.out.println("QR Code image created successfully!");
         } catch (Exception e) {
-            System.err.println(e);
+            JOptionPane.showMessageDialog(null,e.getMessage() , "Atenção", 1);
         }
     }
 }
